@@ -1,0 +1,23 @@
+{
+  "name": "app-root-path",
+  "version": "0.0.1",
+  "description": "Determine an app's root path from anywhere inside the app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inxilpro/node-app-root-path.git"
+  },
+  "keywords": [
+    "root",
+    "path"
+  ],
+  "author": "Chris Morrell <http://cmorrell.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inxilpro/node-app-root-path/issues"
+  },
+  "homepage": "https://github.com/inxilpro/node-app-root-path"
+}
