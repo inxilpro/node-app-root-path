@@ -26,6 +26,12 @@ A helper function is also provided:
 
 This works by passing the current module's `require` method (each module has its *own* `require` method) to the `app-root-path` module, which then returns a wrapper for that method that prepends the application's root path to whatever path is passed to it.
 
+Finally, you can also just resolve a module path:
+
+``` js
+    var myModulePath = require('app-root-path').resolve('/lib/my-module.js');
+```
+
 ## How It Works
 
 This module works on the assumption that your application's root path is the parent of the `node_modules` directory.  Here's almost all the module's logic:
