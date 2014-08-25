@@ -4,7 +4,7 @@
   "description": "Determine an app's root path from anywhere inside the app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node node_modules/mocha/bin/mocha -R spec"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/inxilpro/node-app-root-path/issues"
   },
-  "homepage": "https://github.com/inxilpro/node-app-root-path"
+  "homepage": "https://github.com/inxilpro/node-app-root-path",
+  "devDependencies": {
+    "mocha": "^1.21.4"
+  }
 }
