@@ -1,18 +1,4 @@
-var path = require('path'),
-	appRootPath = path.resolve(__dirname, '..', '..');
+'use strict';
 
-exports.resolve = function(pathToModule) {
-	return path.join(appRootPath, pathToModule);
-};
-
-exports.require = function(moduleReqire) {
-	return function(pathToModule) {
-		return moduleReqire(exports.resolve(pathToModule));
-	}
-};
-
-exports.toString = function() {
-	return appRootPath;
-};
-
-exports.path = appRootPath;
+var lib = require('./lib/app-root-path.js');
+module.exports = lib(__dirname);
