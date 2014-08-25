@@ -42,6 +42,8 @@ Finally, you can also just resolve a module path:
 var myModulePath = require('app-root-path').resolve('/lib/my-module.js');
 ```
 
+You can also explicitly set the path, using the environmental variable `APP_ROOT_PATH` or by calling `require('app-root-path').setPath('/my/app/is/here')`
+
 ## How It Works
 
 This module uses two different methods to determine the app's root path, depending on the circumstances.

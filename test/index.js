@@ -43,4 +43,11 @@ describe('The path resolution method...', function() {
 			assert.equal(resolve(testPath), expected);
 		});
 	});
+
+	// Check when setting via environmental variable
+	it('should respect the APP_ROOT_PATH environmental variable', function() {
+		var expected = '/some/arbirary/path';
+		process.env.APP_ROOT_PATH = expected;
+		assert.equal(resolve('/somewhere/else'), expected);
+	});
 });

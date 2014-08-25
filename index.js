@@ -25,4 +25,8 @@ exports.toString = function() {
 	return appRootPath;
 };
 
+exports.setPath = function(explicitlySetPath) {
+	appRootPath = path.resolve(explicitlySetPath);
+}
+
 exports.path = appRootPath;
