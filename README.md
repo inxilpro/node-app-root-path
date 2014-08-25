@@ -1,5 +1,7 @@
 # App Root Path Module
 
+[![Build Status](https://travis-ci.org/inxilpro/node-app-root-path.svg)](https://travis-ci.org/inxilpro/node-app-root-path)
+
 This simple module helps you access your application's root path from anywhere in the application without resorting to `require("../../path")`.
 
 ## Installation
