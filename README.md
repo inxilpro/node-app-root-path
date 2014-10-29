@@ -78,6 +78,9 @@ When a file is run directly from Node, `require.main` is set to its `module`.  `
 
 ## Change Log
 
+### 0.1.1
+  - Added Windows support (and, theoretically, other operating systems that have a directory separator that's not "/")
+
 ### 0.1.0
   - Completely rewrote the path resolution method to account for most possible scenarios.  This shouldn't cause and backwards compatibility issues, but always test your code.
   - Removed the need to pass a modules's `require()` method to the `appRootPath.require()` function.  Which it's true that each module has its own `require()` method, in practice it doesn't matter, and it's **much** simpler this way.
