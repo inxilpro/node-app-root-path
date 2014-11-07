@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/inxilpro/node-app-root-path",
   "devDependencies": {
-    "mocha": "^1.21.4"
+    "mocha": "^2.0.1"
   }
 }
