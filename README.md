@@ -1,6 +1,6 @@
 # App Root Path Module
 
-[![Build Status](https://travis-ci.org/inxilpro/node-app-root-path.svg)](https://travis-ci.org/inxilpro/node-app-root-path) [![Dependency Status](https://david-dm.org/inxilpro/node-app-root-path.svg)](https://david-dm.org/inxilpro/node-app-root-path)
+[![Build Status](https://travis-ci.org/inxilpro/node-app-root-path.svg)](https://travis-ci.org/inxilpro/node-app-root-path) [![Dependency Status](https://david-dm.org/inxilpro/node-app-root-path.svg)](https://david-dm.org/inxilpro/node-app-root-path) [![Coverage Status](https://img.shields.io/coveralls/inxilpro/node-app-root-path.svg)](https://coveralls.io/r/inxilpro/node-app-root-path)
 
 > **Please Note:** Due to the very limited scope of this module, I do not anticipate needing to make very many changes to it.  Expect long stretches of zero updates—that does not mean that the module is outdated.
 
