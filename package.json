@@ -4,7 +4,7 @@
   "description": "Determine an app's root path from anywhere inside the app",
   "main": "index.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha -R spec"
+    "test": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,9 @@
   },
   "homepage": "https://github.com/inxilpro/node-app-root-path",
   "devDependencies": {
-    "mocha": "^2.0.1"
+    "mocha": "^2.0.1",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.4",
+    "mocha-lcov-reporter": "0.0.1"
   }
 }
