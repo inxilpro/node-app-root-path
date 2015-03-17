@@ -21,6 +21,8 @@ var appRoot = require('app-root-path');
 var myModule = require(appRoot + '/lib/my-module.js');
 ```
 
+> _Side note: the module actually returns an object, but that object implements the `toString` method, so you can use it as though it were a string.  There are a few edge cases where this might not be the case (most notably `console.log`), but they shouldn't affect actual use of the module, where you're almost always concatenating with an additional string._
+
 A helper function is also provided:
 
 ``` js
