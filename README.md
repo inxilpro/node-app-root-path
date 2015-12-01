@@ -90,7 +90,10 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
 
 ## Change Log
 
-### 1.1.0
+### 1.2.0
+  - Special logic to resolve correctly when in an [electron](https://github.com/atom/electron) renderer process
+
+### 1.1.0 (currently `app-root-path@beta`)
   - Special logic to handle an edge case when used in a globally-installed CLI project
   - Fixed a bug where `setPath()` did not update `require('app-root-path').path`
   - Moved some logic outside of the `resolve()` function so that it's not called multiple times
