@@ -9,7 +9,7 @@ This simple module helps you access your application's root path from anywhere i
 ## Installation
 
 ``` bash
-$ npm install app-root-path --save
+$ npm i -S app-root-path
 ```
 
 ## Usage
@@ -81,6 +81,12 @@ path.dirname(require.main.filename);
 ```
 
 When a file is run directly from Node, `require.main` is set to that file's `module`.  Each module has a `filename` property that refers to the filename of that module, so by fetching the directory name for that file, we at least get the directory of file passed to `node`.  In some cases (process managers and test suites, for example) this doesn't actually give the correct directory, though, so this method is only used as a fallback.
+
+### Edge-Case: Global CLIs
+
+If your module is installed as a global CLI, for example in `/usr/local/lib/node_modules/yourmodule`, then
+`require.main.filename` will report `/usr/local/lib/node_modules/yourmodule/bin`, which is probably not what
+you want. `app-root-path` is aware of this edge-case and will strip the `/bin` automatically.
 
 ## Change Log
 
