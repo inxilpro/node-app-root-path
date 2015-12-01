@@ -84,6 +84,11 @@ When a file is run directly from Node, `require.main` is set to that file's `mod
 
 ## Change Log
 
+### 1.1.0
+  - Special logic to handle an edge case when used in a globally-installed CLI project
+  - Fixed a bug where `setPath()` did not update `require('app-root-path').path`
+  - Moved some logic outside of the `resolve()` function so that it's not called multiple times
+
 ### 1.0.0
   - No changes.  Just updated the version to signify a locked API (see [semver](http://semver.org/)).
 
