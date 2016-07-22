@@ -90,6 +90,9 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
 
 ## Change Log
 
+### 1.3.0
+  - Updated [electron](https://github.com/atom/electron) to match changes in version 1.0 of that project
+
 ### 1.2.1
   - Had to bump package version because 1.2.0 got published to npm as @beta
 
