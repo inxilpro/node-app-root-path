@@ -110,21 +110,4 @@ describe('The public interface', function() {
 		assert(pub.path);
 		assert.equal(pub.path, pub.toString());
 	});
-
-	it('should print a warning when passing a function to require(), but still work normally', function(done) {
-		var warnings = 0;
-		var _warn = console.warn;
-		console.warn = function(msg) {
-			warnings++;
-		};
-
-		var req = pub.require(require);
-
-		process.nextTick(function() {
-			var testlib = req('lib/testlib.js');
-			assert(warnings);
-			assert.equal(testlib, 'hello world');
-			done();
-		});
-	});
 });
