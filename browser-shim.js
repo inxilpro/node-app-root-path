@@ -1,6 +1,6 @@
 'use strict';
 
-exports.path = '';
+exports.path = require('path').dirname(require.main.filename);
 
 exports.resolve = function(pathToModule) {
 	return exports.path + pathToModule;
