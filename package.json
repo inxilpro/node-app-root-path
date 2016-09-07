@@ -44,7 +44,10 @@
     "validate-commit-msg": "^2.8.0"
   },
   "release": {
-    "verifyRelease": "cracks"
+    "verifyRelease": "cracks",
+    "config": {
+      "branch": "development"
+    }
   },
   "config": {
     "ghooks": {
