@@ -1,6 +1,6 @@
 # App Root Path Module
 
-[![Build Status](https://travis-ci.org/inxilpro/node-app-root-path.svg)](https://travis-ci.org/inxilpro/node-app-root-path) [![Dependency Status](https://david-dm.org/inxilpro/node-app-root-path.svg)](https://david-dm.org/inxilpro/node-app-root-path) [![Coverage Status](https://img.shields.io/coveralls/inxilpro/node-app-root-path.svg)](https://coveralls.io/r/inxilpro/node-app-root-path)
+[![Build Status][build-status-img]][build-status] [![Dependency Status][david-dm-img]][david-dm] [![Code Coverage Status][codecov-img]][codecov]
 
 > **Please Note:** Due to the very limited scope of this module, I do not anticipate needing to make very many changes to it.  Expect long stretches of zero updates—that does not mean that the module is outdated.
 
@@ -90,6 +90,11 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
 
 ## Change Log
 
+### 2.0.0
+  - Removed official support for node < 4.0
+  - Removed support for passing `module.require` to `appRootPath.require` (which has been deprecated for a while)
+  - Implemented [semantic-release](https://github.com/semantic-release/semantic-release) from here on out
+
 ### 1.3.0
   - Updated [electron](https://github.com/atom/electron) to match changes in version 1.0 of that project
 
@@ -116,3 +121,9 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
   - Added tests
 
 
+[build-status]: https://travis-ci.org/inxilpro/node-app-root-path
+[build-status-img]: https://travis-ci.org/inxilpro/node-app-root-path.svg
+[david-dm-img]: https://david-dm.org/inxilpro/node-app-root-path.svg
+[david-dm]: https://david-dm.org/inxilpro/node-app-root-path
+[codecov-img]: https://codecov.io/gh/inxilpro/node-app-root-path/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/inxilpro/node-app-root-path
