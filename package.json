@@ -7,7 +7,7 @@
   "scripts": {
     "test": "nyc mocha -R spec",
     "report-coverage": "npm test && nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "release": "semantic-release pre && npm publish --tag next && semantic-release post"
+    "release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,7 @@
     "node": ">= 4.0.0"
   },
   "release": {
-    "branch": "development"
+    "branch": "master"
   },
   "config": {
     "ghooks": {
