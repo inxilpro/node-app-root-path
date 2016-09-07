@@ -48,7 +48,7 @@
   },
   "config": {
     "ghooks": {
-      
+      "commit-msg": "validate-commit-msg",
       "post-merge": "npm install",
       "post-rewrite": "npm install"
     },
