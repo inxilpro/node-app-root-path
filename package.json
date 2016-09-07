@@ -45,9 +45,7 @@
   },
   "release": {
     "verifyRelease": "cracks",
-    "config": {
-      "branch": "development"
-    }
+    "branch": "development"
   },
   "config": {
     "ghooks": {

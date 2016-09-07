@@ -4,28 +4,31 @@ cache:
   directories:
     - node_modules
 node_js:
-  - "6.5"
-  - "6.4"
-  - "6.3"
-  - "6.2"
-  - "6.0"
-  - "5.1"
-  - "5.0"
-  - "4.2"
-  - "4.1"
-  - "4.0"
-  - "iojs"
-  - "0.12"
-  - "0.11"
-  - "0.10"
+  - '6.5'
+  - '6.4'
+  - '6.3'
+  - '6.2'
+  - '6.0'
+  - '5.1'
+  - '5.0'
+  - '4.2'
+  - '4.1'
+  - '4.0'
+  - iojs
+  - '0.12'
+  - '0.11'
+  - '0.10'
 before_script:
   - npm prune
 after_success:
   - npm run report-coverage
-  - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
+  - curl -Lo travis_after_all.py https://git.io/travis_after_all
   - python travis_after_all.py
   - export $(cat .to_export_back) &> /dev/null
   - npm run release
 branches:
   except:
-    - /^v\d+\.\d+\.\d+$/
+  - /^v\d+\.\d+\.\d+$/
+env:
+  global:
+    secure: R9izp6A7kdCVi8Oiji6RQ6PJFUqMkn/PO8F4PDSo183LRBrx6cug+JuOrInZkCV0m6o6alcAbFxMoaI1zGOl18Z9H31238VBrojqfAPvw2BN4Lxivnh3XXnzXcwDnA5CT2qf2SUekzHjvt3omKyQNXLLHM9ayasiLlFBwtfP2nQ=
