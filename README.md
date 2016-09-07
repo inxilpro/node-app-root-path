@@ -90,6 +90,11 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
 
 ## Change Log
 
+### 2.0.0
+  - Removed official support for node < 4.0
+  - Removed support for passing `module.require` to `appRootPath.require` (which has been deprecated for a while)
+  - Implemented [semantic-release](https://github.com/semantic-release/semantic-release) from here on out
+
 ### 1.3.0
   - Updated [electron](https://github.com/atom/electron) to match changes in version 1.0 of that project
 
