@@ -5,6 +5,15 @@ var assert = require('assert');
 
 describe('The path resolution method', function() {
 	var resolve = require('../lib/resolve.js');
+	var originalReqMainFilename = require.main.filename;
+
+	beforeEach(function() {
+		require.main.filename = '/var/www/app.js';
+	});
+
+	afterEach(function() {
+		require.main.filename = originalReqMainFilename;
+	});
 
 	// Check global paths
 	it('should use require.main.filename if the path is in the globalPaths array', function() {
@@ -15,12 +24,23 @@ describe('The path resolution method', function() {
 		});
 	});
 
+	// Check bin/ dir in global path
+	it('should correctly handle the global bin/ edge case', function() {
+		var prefix = path.resolve(path.dirname(path.dirname(process.execPath)), 'lib', 'node_modules');
+		var testPath = prefix + '/node-app-root-path/bin/cli.js';
+		var expected = prefix + '/node-app-root-path';
+		require.main.filename = testPath;
+		assert.equal(resolve(testPath), expected);
+	});
+
 	// Check some standard path layouts
 	it('should use String.split() in common cases', function() {
 		var cases = [
 			'/var/www/node_modules/node-app-root-path',
 			'/var/www/node_modules/somemodule/node_modules/node-app-root-path',
 			'/var/www/node_modules/somemodule/node_modules/someothermodules/node_modules/node-app-root-path',
+			'/var/www/node_modules/.bin',
+			'/var/www/node_modules/bin'
 		];
 		var expected = '/var/www';
 		cases.forEach(function(testPath) {
@@ -82,11 +102,29 @@ describe('The public interface', function() {
 		var originalPath = pub.toString();
 		pub.setPath('/path/to');
 		assert.equal(pub.resolve('somewhere'), '/path/to/somewhere');
+		assert.equal(pub.path, '/path/to');
 		pub.setPath(originalPath);
 	});
 
 	it('should expose the app root path as a .path property', function() {
 		assert(pub.path);
 		assert.equal(pub.path, pub.toString());
+	});
+
+	it('should print a warning when passing a function to require(), but still work normally', function(done) {
+		var warnings = 0;
+		var _warn = console.warn;
+		console.warn = function(msg) {
+			warnings++;
+		};
+
+		var req = pub.require(require);
+
+		process.nextTick(function() {
+			var testlib = req('lib/testlib.js');
+			assert(warnings);
+			assert.equal(testlib, 'hello world');
+			done();
+		});
 	});
 });
