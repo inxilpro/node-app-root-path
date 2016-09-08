@@ -94,6 +94,7 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
   - Removed official support for node < 4.0
   - Removed support for passing `module.require` to `appRootPath.require` (which has been deprecated for a while)
   - Implemented [semantic-release](https://github.com/semantic-release/semantic-release) from here on out
+  - Added browserify-compatible shim
 
 ### 1.3.0
   - Updated [electron](https://github.com/atom/electron) to match changes in version 1.0 of that project
@@ -120,6 +121,16 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
   - Removed the need to pass a modules's `require()` method to the `appRootPath.require()` function.  Which it's true that each module has its own `require()` method, in practice it doesn't matter, and it's **much** simpler this way.
   - Added tests
 
+## Development Nodes
+
+When using [semantic-release](https://github.com/semantic-release/semantic-release), the preferred method 
+for commits is:
+
+  - `git add …`
+  - `git cz` (see [commitizen](https://github.com/commitizen/cz-cli))
+  - `git push`
+
+This helps ensure that commits match the expected format.  Commits to `master` will cause releases.
 
 [build-status]: https://travis-ci.org/inxilpro/node-app-root-path
 [build-status-img]: https://travis-ci.org/inxilpro/node-app-root-path.svg
