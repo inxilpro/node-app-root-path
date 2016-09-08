@@ -40,6 +40,7 @@
     "istanbul": "^0.3.4",
     "mocha": "^2.0.1",
     "mocha-lcov-reporter": "0.0.1",
+    "mockery": "^1.7.0",
     "nyc": "^8.1.0",
     "semantic-release": "^4.3.5",
     "validate-commit-msg": "^2.8.0"

@@ -2,10 +2,16 @@
 
 var path = require('path');
 var assert = require('assert');
+var mockery = require('mockery');
 
 describe('The path resolution method', function() {
 	var resolve = require('../lib/resolve.js');
 	var originalReqMainFilename = require.main.filename;
+
+	// Make sure env variable isn't set for tests
+	if (process.env.APP_ROOT_PATH) {
+		delete process.env.APP_ROOT_PATH;
+	}
 
 	beforeEach(function() {
 		require.main.filename = '/var/www/app.js';
@@ -68,10 +74,42 @@ describe('The path resolution method', function() {
 	// Check when setting via environmental variable
 	it('should respect the APP_ROOT_PATH environmental variable', function() {
 		var expected = '/some/arbirary/path';
-		var originalPath = process.env.APP_ROOT_PATH;
 		process.env.APP_ROOT_PATH = expected;
 		assert.equal(resolve('/somewhere/else'), expected);
-		process.env.APP_ROOT_PATH = originalPath;
+		delete process.env.APP_ROOT_PATH;
+	});
+
+	it('should defer to the main process inside an electron renderer process', function() {
+		var fauxElectronPath = 'path/from/electron';
+		var lastRemoteModule = null;
+
+		// Set up mock
+		mockery.registerAllowable('path');
+		mockery.registerMock('electron', {
+			remote: {
+				require: function(moduleName) {
+					lastRemoteModule = moduleName;
+					return {
+						path: fauxElectronPath
+					};
+				}
+			}
+		});
+		global.window = {
+			process: {
+				type: 'renderer'
+			}
+		};
+		mockery.enable();
+
+		// Run test
+		assert.equal(resolve('funky'), fauxElectronPath);
+		assert.equal(lastRemoteModule, 'app-root-path');
+
+		// Tear down mock
+		mockery.deregisterMock('electron');
+		delete global.window;
+		mockery.disable();
 	});
 });
 
