@@ -111,6 +111,16 @@ describe('The path resolution method', function() {
 		delete global.window;
 		mockery.disable();
 	});
+
+	// Check AWS Lambda execution environment is honored
+	it('should respect the AWS Lambda environmental variables', function() {
+		var expected = '/some/arbirary/path';
+		process.env.LAMBDA_TASK_ROOT = expected;
+		process.env.AWS_EXECUTION_ENV = 'AWS_Lambda_nodesomething';
+		assert.equal(resolve('/somewhere/else'), expected);
+		delete process.env.LAMBDA_TASK_ROOT;
+		delete process.env.AWS_EXECUTION_ENV;
+	});
 });
 
 describe('The public interface', function() {
