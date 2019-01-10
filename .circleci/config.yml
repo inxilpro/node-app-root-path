@@ -1,0 +1,24 @@
+#
+# https://circleci.com/docs/2.0/language-php/
+#
+
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-v1-{{ checksum "yarn.lock" }}
+            - node-v1-
+      - run:
+          name: Install JS dependencies
+          command: yarn install --pnp
+      - save_cache:
+          key: node-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - ~/.yarn
