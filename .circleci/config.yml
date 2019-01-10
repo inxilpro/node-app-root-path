@@ -8,6 +8,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:10
+    working_directory: ~/app-root-path
     steps:
       - checkout
       - restore_cache:
