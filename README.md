@@ -90,8 +90,10 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
 
 ## Change Log
 
-### 2.1.0
+### 2.2.0
   - Added support for Yarn Plug'n'Play
+  - Adjusted browser-shim to address webpack warnings
+  - Bumped minimum Node version to 6
 
 ### 2.0.1
   - Minor tweaks to how electron-specific logic runs. Should help with packagers that try to resolve all `require()` statements during packaging.
