@@ -1,6 +1,6 @@
 {
   "name": "app-root-path",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Determine an app's root path from anywhere inside the app",
   "main": "index.js",
   "browser": "browser-shim.js",
