@@ -50,7 +50,7 @@ You can explicitly set the path, using the environmental variable `APP_ROOT_PATH
 
 ## How It Works (under the hood)
 
-> No need to read this unless your curious—or you run into a (very unlikely) case where the module does not work as expected.
+> No need to read this unless you're curious—or you run into a (very unlikely) case where the module does not work as expected.
 
 This module uses two different methods to determine the app's root path, depending on the circumstances.
 
