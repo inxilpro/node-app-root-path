@@ -4,9 +4,16 @@ var path = require('path');
 var assert = require('assert');
 var mockery = require('mockery');
 
+function globalPathsContainPnpm() {
+	return undefined !== require('module').globalPaths.find(function(e) {
+		return e.indexOf('.pnpm') !== -1
+	});
+}
+
 describe('The path resolution method', function() {
 	var resolve = require('../lib/resolve.js');
 	var originalReqMainFilename = require.main.filename;
+	const isPnpm = globalPathsContainPnpm();
 
 	// Make sure env variable isn't set for tests
 	if (process.env.APP_ROOT_PATH) {
@@ -21,14 +28,53 @@ describe('The path resolution method', function() {
 		require.main.filename = originalReqMainFilename;
 	});
 
-	// Check global paths
-	it('should use require.main.filename if the path is in the globalPaths array', function() {
-		var expected = path.dirname(require.main.filename);
-		require('module').globalPaths.forEach(function(globalPath) {
-			var testPath = globalPath + path.sep + 'node-app-root-path';
-			assert.equal(resolve(testPath), expected);
+	if (isPnpm) {
+		it('should use require.main.filename if the path is in the globalPaths array (PNPM)', function() {
+			var expected = path.dirname(require.main.filename);
+			var root = path.resolve(__dirname, '..');
+
+			require('module').globalPaths.forEach(function(globalPath) {
+				var testPath = globalPath + path.sep + 'node-app-root-path';
+				
+				if (-1 !== testPath.indexOf('.pnpm')) {
+					assert.equal(resolve(testPath), root);
+				} else {
+					assert.equal(resolve(testPath), expected);
+				}
+			});
 		});
-	});
+
+		// Check pnpm
+		it('should use String.split() if installed with pnpm', function() {
+			var cases = [
+				'/var/www/node_modules/.pnpm/node_modules/node-app-root-path',
+				'/var/www/node_modules/.pnpm/custom_registry/node-app-root-path',
+			];
+			var expected = '/var/www';
+
+			cases.forEach(function(testPath) {
+				assert.equal(resolve(testPath), expected);
+			});
+		});
+
+		// Check root path
+		it('should still use String.split() in the root directory (PNPM)', function() {
+			assert.equal(resolve('/node_modules'), path.dirname(require.main.filename));
+		});
+	} else {
+		it('should use require.main.filename if the path is in the globalPaths array', function() {
+			var expected = path.dirname(require.main.filename);
+			require('module').globalPaths.forEach(function(globalPath) {
+				var testPath = globalPath + path.sep + 'node-app-root-path';
+				assert.equal(resolve(testPath), expected);
+			});
+		});
+
+		// Check root path
+		it('should still use String.split() in the root directory', function() {
+			assert.equal(resolve('/node_modules'), '');
+		});
+	}
 
 	// Check bin/ dir in global path
 	it('should correctly handle the global bin/ edge case', function() {
@@ -52,11 +98,6 @@ describe('The path resolution method', function() {
 		cases.forEach(function(testPath) {
 			assert.equal(resolve(testPath), expected);
 		});
-	});
-
-	// Check root path
-	it('should still use String.split() in the root directory', function() {
-		assert.equal(resolve('/node_modules'), '');
 	});
 
 	// Check unexpected path
