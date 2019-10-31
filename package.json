@@ -1,13 +1,15 @@
 {
   "name": "app-root-path",
-  "version": "2.2.1",
+  "version": "0.0.0-development",
   "description": "Determine an app's root path from anywhere inside the app",
   "main": "index.js",
   "browser": "browser-shim.js",
   "scripts": {
     "test": "nyc mocha -R spec",
     "report-coverage": "npm test && nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "release": "semantic-release pre && npm publish && semantic-release post"
+    "release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
+    "commit": "npx git-cz"
   },
   "repository": {
     "type": "git",
@@ -32,18 +34,18 @@
   },
   "homepage": "https://github.com/inxilpro/node-app-root-path",
   "devDependencies": {
-    "codecov": "^1.0.1",
-    "coveralls": "^2.11.2",
+    "codecov": "^3.6.1",
+    "coveralls": "^3.0.7",
     "cracks": "^3.1.2",
-    "cz-conventional-changelog": "^1.2.0",
-    "ghooks": "^1.3.2",
+    "cz-conventional-changelog": "^3.0.2",
+    "ghooks": "^2.0.4",
     "istanbul": "^0.3.4",
-    "mocha": "^2.0.1",
+    "mocha": "^6.2.2",
     "mocha-lcov-reporter": "0.0.1",
     "mockery": "^1.7.0",
-    "nyc": "^8.1.0",
-    "semantic-release": "^4.3.5",
-    "validate-commit-msg": "^2.8.0"
+    "nyc": "^14.1.1",
+    "semantic-release": "^15.13.28",
+    "validate-commit-msg": "^2.14.0"
   },
   "engines": {
     "node": ">= 6.0.0"
