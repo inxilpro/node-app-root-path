@@ -90,6 +90,10 @@ you want. `app-root-path` is aware of this edge-case and will strip the `/bin` a
 
 ## Change Log
 
+### 3.1.0
+  - Added TypeScript types
+  - Added fallback for when `require.main` is missing (ESM imports)
+
 ### 3.0.0
   - Improved Yarn Plug'n'Play support
   - Fixed bug when used with webpack
